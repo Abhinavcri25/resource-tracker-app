@@ -1,0 +1,92 @@
+<div class="export-container">
+    <button class="export-button" (click)="exportToCSV()">EXPORT TO CSV</button>
+    <button class="bulk-edit-button" (click)="toggleBulkEditForm()" [disabled]="selectedKeys.length === 0">
+        BULK EDIT SELECTED
+    </button>
+</div>
+
+
+<div *ngIf="showBulkForm" class="bulk-form-container">
+    <form [formGroup]="bulkForm" (ngSubmit)="submitBulkEdit()" class="bulk-edit-form">
+        <div class="form-group">
+            <label for="designation">Designation:</label>
+            <select formControlName="Designation" id="designation">
+                <option value="">--Select--</option>
+                <option value="Software Engineer">Software Engineer</option>
+                <option value="Backend Developer">Backend Developer</option>
+                <option value="Frontend Developer">Frontend Developer</option>
+                <option value="Full Stack Developer">Full Stack Developer</option>
+                <option value="DevOps Engineer">DevOps Engineer</option>
+                <option value="Data Analyst">Data Analyst</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="billable">Billable:</label>
+            <select formControlName="Billable" id="billable">
+                <option value="">--Select--</option>
+                <option value="YES">YES</option>
+                <option value="NO">NO</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="project">Project Allocation:</label>
+            <select formControlName="ProjectAllocation" id="project">
+                <option value="">--Select--</option>
+                <option value="Schneider Electric">Schneider Electric</option>
+                <option value="Hills">Hills</option>
+                <option value="Project Z">Project Z</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="location">Location:</label>
+            <select formControlName="Location" id="location">
+                <option value="">--Select--</option>
+                <option value="Hyderabad">Hyderabad</option>
+                <option value="Bangalore">Bangalore</option>
+                <option value="Delhi">Delhi</option>
+            </select>
+        </div>
+
+        <button type="submit" [disabled]="!bulkForm.valid">Submit Bulk Update</button>
+    </form>
+</div>
+
+<kendo-grid *ngIf="showtable" [kendoGridBinding]="employeeList" [height]="500" [pageSize]="7" [pageable]="true"
+    [sortable]="true" [resizable]="true" [filterable]="true" [reorderable]="true" [columnMenu]="true" [navigable]="true"
+    [selectable]="{ mode: 'multiple', checkboxOnly: true }" [(selectedKeys)]="selectedKeys"
+    [kendoGridSelectBy]="'EmpId'">
+    <kendo-grid-checkbox-column [width]="50"></kendo-grid-checkbox-column>
+
+    <kendo-grid-column field="EmpId" title="EMP ID" [width]="100"></kendo-grid-column>
+    <kendo-grid-column field="ResourceName" title="Name" [width]="150"></kendo-grid-column>
+    <kendo-grid-column field="Designation" title="Designation" [width]="150"></kendo-grid-column>
+    <kendo-grid-column field="ReportingTo" title="Reporting To" [width]="150"></kendo-grid-column>
+    <kendo-grid-column field="EmailId" title="Email" [width]="200"></kendo-grid-column>
+    <kendo-grid-column field="ProjectAllocation" title="Project" [width]="150"></kendo-grid-column>
+    <kendo-grid-column field="TechnologySkill" title="Technology" [width]="150"></kendo-grid-column>
+    <kendo-grid-column field="Location" title="Location" [width]="150"></kendo-grid-column>
+    <kendo-grid-column field="CteDoj" title="CTE DOJ" [width]="130"></kendo-grid-column>
+    <kendo-grid-column field="Billable" title="Billable" [width]="100"></kendo-grid-column>
+    <kendo-grid-column field="Remarks" title="Remarks" [width]="200"></kendo-grid-column>
+
+    <kendo-grid-column title="Show" [width]="100">
+        <ng-template kendoGridCellTemplate let-dataItem>
+            <button kendoButton size="small" (click)="showdetails(dataItem)">Details</button>
+        </ng-template>
+    </kendo-grid-column>
+
+    <kendo-grid-column title="Edit" [width]="100">
+        <ng-template kendoGridCellTemplate let-dataItem>
+            <button kendoButton look="outline" size="small" (click)="EditForm(dataItem)">Edit</button>
+        </ng-template>
+    </kendo-grid-column>
+
+    <kendo-grid-column title="Delete" [width]="100">
+        <ng-template kendoGridCellTemplate let-dataItem>
+            <button kendoButton look="flat" size="small" (click)="delete(dataItem)">Delete</button>
+        </ng-template>
+    </kendo-grid-column>
+</kendo-grid>

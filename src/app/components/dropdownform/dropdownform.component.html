@@ -1,0 +1,83 @@
+<div class="csv-import">
+    <label for="csvFile">Import Employees via CSV</label>
+    <input type="file" id="csvFile" (change)="onCsvFileSelected($event)" />
+    <button (click)="submitCsvImport()" [disabled]="!importReady">
+        Submit Import
+    </button>
+</div>
+
+<form [formGroup]="newForm" (ngSubmit)="Submit()" class="resource-form">
+
+    <h2 class="form-title">Resource Form</h2>
+
+    <div class="form-grid">
+        <div class="form-group">
+            <label>Resource Name</label>
+            <input type="text" formControlName="ResourceName" />
+        </div>
+
+        <div class="form-group">
+            <label>Designation</label>
+            <kendo-dropdownlist [data]="designationList" formControlName="Designation"
+                [defaultItem]="'Select Designation'">
+            </kendo-dropdownlist>
+        </div>
+
+        <div class="form-group">
+            <label>Reporting To</label>
+            <input type="text" formControlName="ReportingTo" />
+        </div>
+
+        <div class="form-group">
+            <label>Billable</label>
+            <kendo-dropdownlist [data]="billableList" formControlName="Billable" [defaultItem]="'Select Billable'">
+            </kendo-dropdownlist>
+        </div>
+
+        <div class="form-group full-width">
+            <label>Technology Skill</label>
+            <kendo-multiselect [data]="techList" formControlName="TechnologySkill" [valuePrimitive]="true"
+                (valueChange)="onSkillChange($event)">
+            </kendo-multiselect>
+        </div>
+
+
+        <div class="form-group">
+            <label>Project Allocation</label>
+            <kendo-dropdownlist [data]="projectList" formControlName="ProjectAllocation"
+                [defaultItem]="'Select Project'">
+            </kendo-dropdownlist>
+        </div>
+
+        <div class="form-group">
+            <label>Location</label>
+            <kendo-dropdownlist [data]="locationList" formControlName="Location" [defaultItem]="'Select Location'">
+            </kendo-dropdownlist>
+        </div>
+
+        <div class="form-group">
+            <label>Email ID</label>
+            <input type="email" formControlName="EmailId" />
+        </div>
+
+        <div class="form-group">
+            <label>CTE DOJ</label>
+            <input type="date" formControlName="CteDoj" />
+        </div>
+
+        <div class="form-group full-width">
+            <label>Remarks</label>
+            <textarea formControlName="Remarks"></textarea>
+        </div>
+
+    </div>
+
+    <button type="submit" [disabled]="!newForm.valid">Submit</button>
+</form>
+
+<!-- Popup -->
+<div *ngIf="popupVisible" class="popup">
+    <h3>{{ popupTitle }}</h3>
+    <p>Employee: {{ popupData?.ResourceName }}</p>
+    <button (click)="closePopup()">Close</button>
+</div>

@@ -1,0 +1,79 @@
+<h2 class="dashboard-title">📊 Dashboard</h2>
+
+<div class="summary-cards">
+  <div class="card">
+    <mat-icon>group</mat-icon> Employees<br />
+    <span>{{ totalEmployees }}</span>
+  </div>
+  <div class="card">
+    <mat-icon>manage_accounts</mat-icon> Managers<br />
+    <span>{{ totalManagers }}</span>
+  </div>
+  <div class="card">
+    <mat-icon>business_center</mat-icon> Projects<br />
+    <span>{{ totalProjects }}</span>
+  </div>
+  <div class="card">
+    <mat-icon>place</mat-icon> Locations<br />
+    <span>{{ totalLocations }}</span>
+  </div>
+  <div class="card">
+    <mat-icon>percent</mat-icon> Billable<br />
+    <span>{{ billablePercent }}%</span>
+  </div>
+</div>
+
+<!-- Skill Chart -->
+<div class="chart-container">
+  <h3>📌 Skill Distribution</h3>
+  <ngx-charts-bar-vertical
+    *ngIf="skillChartData.length > 0"
+    [results]="skillChartData"
+    [xAxis]="true"
+    [yAxis]="true"
+    [legend]="false"
+    [showDataLabel]="true"
+    [animations]="true">
+  </ngx-charts-bar-vertical>
+</div>
+
+
+<div class="group-section">
+  <h3 class="grouped-title">📂 Grouped Employee Information</h3>
+
+  <details class="accordion">
+    <summary class="group-title">👨‍💼 Employees by Manager</summary>
+    <div *ngFor="let manager of managerGroups | keyvalue">
+      <div class="sub-group-title">{{ manager.key }} ({{ manager.value.length }})</div>
+      <ul>
+        <li *ngFor="let emp of manager.value">
+          {{ emp.ResourceName }} – {{ emp.Designation }} – {{ emp.ProjectAllocation }}
+        </li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="accordion">
+    <summary class="group-title">💼 Employees by Project</summary>
+    <div *ngFor="let project of projectGroups | keyvalue">
+      <div class="sub-group-title">{{ project.key }} ({{ project.value.length }})</div>
+      <ul>
+        <li *ngFor="let emp of project.value">
+          {{ emp.ResourceName }} – {{ emp.Designation }} – {{ emp.ReportingTo }}
+        </li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="accordion">
+    <summary class="group-title">📍 Employees by Location</summary>
+    <div *ngFor="let location of locationGroups | keyvalue">
+      <div class="sub-group-title">{{ location.key }} ({{ location.value.length }})</div>
+      <ul>
+        <li *ngFor="let emp of location.value">
+          {{ emp.ResourceName }} – {{ emp.Designation }} – {{ emp.ProjectAllocation }}
+        </li>
+      </ul>
+    </div>
+  </details>
+</div>

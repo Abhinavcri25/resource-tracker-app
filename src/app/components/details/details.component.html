@@ -1,0 +1,20 @@
+<div *ngIf="emp" class="employee-details">
+  <h2>Employee Details</h2>
+  <p><strong>Employee ID:</strong> {{ emp.EmpId }}</p>
+  <p><strong>Resource Name:</strong> {{ emp.ResourceName }}</p>
+  <p><strong>Designation:</strong> {{ emp.Designation }}</p>
+  <p><strong>Reporting To:</strong> {{ emp.ReportingTo }}</p>
+  <p><strong>Billable:</strong> {{ emp.Billable }}</p>
+  <p><strong>Technology Skill:</strong> {{ emp.TechnologySkill }}</p>
+  <p><strong>Project Allocation:</strong> {{ emp.ProjectAllocation }}</p>
+  <p><strong>Location:</strong> {{ emp.Location }}</p>
+  <p><strong>Email ID:</strong> {{ emp.EmailId }}</p>
+  <p><strong>CTE DOJ:</strong> {{ emp.CteDoj | date:'yyyy-MM-dd' }}</p>
+  <p><strong>Remarks:</strong> {{ emp.Remarks }}</p>
+
+  <div class="button-group">
+    <button class="back" (click)="GoBack()">🔙 Back</button>
+    <button class="delete" (click)="DeleteResource()">🗑️ Delete</button>
+    <button class="edit" (click)="EditForm()">✏️ Edit</button>
+  </div>
+</div>
