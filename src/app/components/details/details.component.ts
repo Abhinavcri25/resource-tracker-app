@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { employee } from '../../app.component';
+// import { employee } from '../../app.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EmployeeServiceService } from '../../services/employee-service.service';
 import { CommonModule } from '@angular/common';
@@ -39,11 +39,11 @@ export class DetailsComponent {
     // this.selecteduser = ;
     // this.viewmode = 'form';
     // this.showtable = false;
-    this.route.navigate([`/form/${this.emp?.EmpId}`]);
+    this.route.navigate([`/form/${this.emp?.empId}`]);
     // const index = this.employeeList.indexOf(data);
   }
   DeleteResource() {
-    const id = this.emp?.EmpId;
+    const id = this.emp?.empId;
     if (id !== undefined) {
       this.empservice.DeleteEmployee(parseInt(id)).subscribe((res: any) => {
         console.log("deleted");
@@ -53,4 +53,18 @@ export class DetailsComponent {
       console.warn("Cannot delete: empId is undefined");
     }
   }
+}
+
+export interface employee {
+  empId: string;
+  resourceName: string;
+  designation: string;
+  reportingTo: string;
+  billable: string;
+  technologySkill: string;
+  projectAllocation: string;
+  location: string;
+  emailId: string;
+  cteDoj: string;
+  remarks: string;
 }

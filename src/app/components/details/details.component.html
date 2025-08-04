@@ -1,16 +1,16 @@
 <div *ngIf="emp" class="employee-details">
   <h2>Employee Details</h2>
-  <p><strong>Employee ID:</strong> {{ emp.EmpId }}</p>
-  <p><strong>Resource Name:</strong> {{ emp.ResourceName }}</p>
-  <p><strong>Designation:</strong> {{ emp.Designation }}</p>
-  <p><strong>Reporting To:</strong> {{ emp.ReportingTo }}</p>
-  <p><strong>Billable:</strong> {{ emp.Billable }}</p>
-  <p><strong>Technology Skill:</strong> {{ emp.TechnologySkill }}</p>
-  <p><strong>Project Allocation:</strong> {{ emp.ProjectAllocation }}</p>
-  <p><strong>Location:</strong> {{ emp.Location }}</p>
-  <p><strong>Email ID:</strong> {{ emp.EmailId }}</p>
-  <p><strong>CTE DOJ:</strong> {{ emp.CteDoj | date:'yyyy-MM-dd' }}</p>
-  <p><strong>Remarks:</strong> {{ emp.Remarks }}</p>
+  <p><strong>Employee ID:</strong> {{ emp.empId }}</p>
+  <p><strong>Resource Name:</strong> {{ emp.resourceName }}</p>
+  <p><strong>Designation:</strong> {{ emp.designation }}</p>
+  <p><strong>Reporting To:</strong> {{ emp.reportingTo }}</p>
+  <p><strong>Billable:</strong> {{ emp.billable }}</p>
+  <p><strong>Technology Skill:</strong> {{ emp.technologySkill }}</p>
+  <p><strong>Project Allocation:</strong> {{ emp.projectAllocation }}</p>
+  <p><strong>Location:</strong> {{ emp.location }}</p>
+  <p><strong>Email ID:</strong> {{ emp.emailId }}</p>
+  <p><strong>CTE DOJ:</strong> {{ emp.cteDoj | date:'yyyy-MM-dd' }}</p>
+  <p><strong>Remarks:</strong> {{ emp.remarks }}</p>
 
   <div class="button-group">
     <button class="back" (click)="GoBack()">🔙 Back</button>
